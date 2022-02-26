@@ -16,7 +16,7 @@ def predict():
     key_dict = request.get_json()
     image = key_dict["image"]
     imgdata = base64.b64decode(image)
-    dog = predict_vehicle(imgdata)
+    dog = predict_breed(imgdata)
     response = {
         "result": dog,
     }
