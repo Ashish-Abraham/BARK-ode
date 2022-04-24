@@ -41,12 +41,7 @@ def load_index_to_label_dict(path: str = get_path('/index_to_class_label.json'))
 
 
 @st.cache()
-def predict(
-        img: Image.Image,
-        index_to_label_dict: dict,
-        model,
-        k: int
-        ) -> list:
+def predict(img: Image.Image, index_to_label_dict: dict, model, k: int) -> list:
     """
     Froze all layers of model weights and only learned weights on the final layer (Feature Extraction).
     The weights of the first layer are still what was
@@ -65,21 +60,23 @@ if __name__=='__main__':
     index_to_class_label_dict = load_index_to_label_dict()
 
     st.title("BARK-ode")
+    
     file = st.file_uploader('Upload An Image')
-    if file:  # if user uploaded file
+    if file is not None:  # if user uploaded file
         img = Image.open(file)
         prediction = predict(img, index_to_class_label_dict, model, k=5)
         top_prediction = prediction[0][0]
-    st.title("Here is the image you've selected")
-    resized_image = img.resize((336, 336))
-    st.image(resized_image)
-    st.title("Here are the five most likely bird species")
-    df = pd.DataFrame(data=np.zeros((5, 2)),columns=['Species', 'Confidence Level'], index=np.linspace(1, 5, 5, dtype=int))
-    for idx, p in enumerate(prediction):
-        link = 'https://en.wikipedia.org/wiki/' + \
-            p[0].lower().replace(' ', '_')
-        df.iloc[idx,
-                0] = f'<a href="{link}" target="_blank">{p[0].title()}</a>'
-        df.iloc[idx, 1] = p[1]
-    st.write(df.to_html(escape=False), unsafe_allow_html=True)
+        st.title("Here is the image you've selected")
+        resized_image = img.resize((336, 336))
+        st.image(resized_image)
+
+        st.title("Here are the five most likely breeds")
+        df = pd.DataFrame(data=np.zeros((5, 2)),columns=['Species', 'Confidence Level'], index=np.linspace(1, 5, 5, dtype=int))
+        for idx, p in enumerate(prediction):
+            link = 'https://en.wikipedia.org/wiki/' + \
+                p[0].lower().replace(' ', '_')
+            df.iloc[idx,
+                    0] = f'<a href="{link}" target="_blank">{p[0].title()}</a>'
+            df.iloc[idx, 1] = p[1]
+        st.write(df.to_html(escape=False), unsafe_allow_html=True)
 

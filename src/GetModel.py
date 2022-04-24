@@ -10,10 +10,7 @@ import PIL
 
 class ResnetModel:
 
-    def __init__(
-            self,
-            path_to_pretrained_model: str = None
-            ):
+    def __init__(self, path_to_pretrained_model: str = None):
         """
         Allows for training, evaluation, and prediction of ResNet Models
         params
@@ -30,7 +27,7 @@ class ResnetModel:
         else:
             self.model = self._setup_model(num_classes=120)
         
-        transforms= self._setup_transform()
+        self.data_transforms= self._setup_transform()
 
     
     def train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_inception=False):
@@ -132,11 +129,7 @@ class ResnetModel:
     
     
     
-    def evaluate(
-            self,
-            test_loader,
-            criterion=None
-            ):
+    def evaluate(self, test_loader, criterion=None):
         """
         Feeds set of images through model and evaluates relevant metrics
         as well as batch predicts. Prints loss and accuracy
@@ -189,13 +182,7 @@ class ResnetModel:
         return preds, labels_list
 
     
-    def predict_proba(
-            self,
-            img: PIL.Image.Image,
-            k: int,
-            index_to_class_labels: dict,
-            show: bool = False
-            ):
+    def predict_proba(self, img: PIL.Image.Image, k: int, index_to_class_labels: dict, show: bool = False):
         """
         Feeds single image through network and returns
         top k predicted labels and probabilities
@@ -215,7 +202,8 @@ class ResnetModel:
         """
         if show:
             img.show()
-        img = self.test_transform(img)
+        test_transform =self.data_transforms['test']    
+        img = test_transform(img)
         img = img.unsqueeze(0)
         img = img.to(self.device)
         self.model.eval()
