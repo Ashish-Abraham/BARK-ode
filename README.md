@@ -1,5 +1,5 @@
 # BARK-ode
-![Image](https://github.com/Ashish-Abraham/Bark-ode/blob/main/Images/matt-nelson-aI3EBLvcyu4-unsplash.jpg)
+![Image](https://github.com/Ashish-Abraham/Bark-ode/blob/main/Images/Explainer-Best-Dog-Breed-For-Me.jpg)
 
 Reading something this weekend? This can help you select the best one. Just copy a paragraph from your novel, paste it here and see what it says. Sentiment Analysis model using TensorFlow trained on IMDB dataset.
 ## Neural Network
