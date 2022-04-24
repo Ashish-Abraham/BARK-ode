@@ -62,7 +62,7 @@ if __name__=='__main__':
     cover_image=get_path("/ui/cover.jpg")
 
 
-    st.markdown("<h1 style='text-align: center; color: white;'>BARK-ode🐶</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: red;'>BARK-ode🐶</h1>", unsafe_allow_html=True)
     st.image(cover_image)
     st.markdown("<h6 style='text-align: center; color: white;'>..Upload an image of any dog to identify the breed..</h6>", unsafe_allow_html=True)
 
@@ -76,7 +76,7 @@ if __name__=='__main__':
         st.image(resized_image)
 
         st.title("Here are the five most likely breeds")
-        df = pd.DataFrame(data=np.zeros((5, 2)),columns=['Species', 'Confidence Level'], index=np.linspace(1, 5, 5, dtype=int))
+        df = pd.DataFrame(data=np.zeros((5, 2)),columns=['Breed', 'Confidence Level'], index=np.linspace(1, 5, 5, dtype=int))
         for idx, p in enumerate(prediction):
             link = 'https://en.wikipedia.org/wiki/' + \
                 p[0].lower().replace(' ', '_')
