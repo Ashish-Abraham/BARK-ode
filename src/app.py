@@ -8,7 +8,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-from GetModel import ResnetModel
+from GetModel import ClassificationModel
 
 
 @st.cache()
@@ -19,10 +19,10 @@ def get_path(file_path):
 
 
 @st.cache()
-def load_model(path: str = get_path('/models/dog_res80.pt')) -> ResnetModel:
+def load_model(path: str = get_path('/models/dog_resnet18.pt')) -> ClassificationModel:
     """Retrieves the trained model and maps it to the CPU by default,
     can also specify GPU here."""
-    model = ResnetModel(path_to_pretrained_model=path)
+    model = ClassificationModel(path_to_pretrained_model=path)
     return model
 
 @st.cache()
@@ -55,12 +55,17 @@ def predict(img: Image.Image, index_to_label_dict: dict, model, k: int) -> list:
     formatted_predictions = model.predict_proba(img, k, index_to_label_dict)
     return formatted_predictions
 
+
 if __name__=='__main__':
     model=load_model()
     index_to_class_label_dict = load_index_to_label_dict()
+    cover_image=get_path("/ui/cover.jpg")
 
-    st.title("BARK-ode")
-    
+
+    st.markdown("<h1 style='text-align: center; color: white;'>BARK-ode🐶</h1>", unsafe_allow_html=True)
+    st.image(cover_image)
+    st.markdown("<h6 style='text-align: center; color: white;'>..Upload an image of any dog to identify the breed..</h6>", unsafe_allow_html=True)
+
     file = st.file_uploader('Upload An Image')
     if file is not None:  # if user uploaded file
         img = Image.open(file)

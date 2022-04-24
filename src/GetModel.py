@@ -8,7 +8,7 @@ from tqdm import tqdm
 import PIL
 
 
-class ResnetModel:
+class ClassificationModel:
 
     def __init__(self, path_to_pretrained_model: str = None):
         """
@@ -197,7 +197,7 @@ class ResnetModel:
         returns
         ---------------
         formatted_predictions - list - List of top k
-            formatted predictions formatted to include a tuple of
+        formatted predictions formatted to include a tuple of
             1. predicted label, 2. predicted probability as str
         """
         if show:
