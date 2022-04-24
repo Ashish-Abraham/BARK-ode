@@ -15,7 +15,9 @@ Reading something this weekend? This can help you select the best one. Just copy
  streamlit run app.py
 ```
 * Try demo in hugging face spaces: https://huggingface.co/spaces/ashishabraham22/WATCHA-READIN<br>
-![Image](https://github.com/Ashish-Abraham/Bark-ode/blob/main/Images/barkodeui.png)<br>
+![Image](https://github.com/Ashish-Abraham/Bark-ode/blob/main/Images/barkodeui.png)
+![Image](https://github.com/Ashish-Abraham/Bark-ode/blob/main/Images/barkodeui2.png)<br>
+* See details of the breed by clicking on the names
 
 
 
