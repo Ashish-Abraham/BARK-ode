@@ -29,5 +29,8 @@ train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_inceptio
 ![Image](https://github.com/Ashish-Abraham/Bark-ode/blob/main/Images/barkodeui2.jpeg)<br>
 * See Wikipedia page of the breed by clicking on the names in case you wish to learn more🤗 .
 
+## To Do:
+* Deploy Web app
+* Add more features to web-app using Dockerfile included
 
 
