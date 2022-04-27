@@ -31,5 +31,6 @@ train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_inceptio
 
 ## To Do:
 * Add more features to web-app using Dockerfile included
+* Release it as a functional api
 
 
